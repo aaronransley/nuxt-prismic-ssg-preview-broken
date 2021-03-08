@@ -1,0 +1,23 @@
+// Resources shouldn't output _any_ CSS of their own, and should only expose
+// SCSS mixins, functions, and variables to the rest of the application.
+// Resources are included globally in every component + Nuxt page.
+// Pulled in to site via `styleResources` in `nuxt.config.js`
+
+// from npm packages
+@import '~susy/sass/susy-prefix';
+@import '~susy/sass/plugins/svg-grid/prefix';
+@import '~include-media/dist/include-media';
+
+// from repo
+@import 'resources/functions-utility';
+@import 'resources/mixins-utility';
+@import 'resources/mixins-component';
+@import 'resources/z-index';
+@import 'resources/colors';
+@import 'resources/grid';
+@import 'resources/vertical-spacing';
+@import 'resources/animation';
+@import 'resources/typography-vars';
+@import 'resources/typography-headers';
+@import 'resources/typography-paragraphs';
+@import 'resources/typography-other';

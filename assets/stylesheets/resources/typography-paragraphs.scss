@@ -1,0 +1,61 @@
+// Paragraph text one
+// ------------------------
+
+@mixin t-paragraph-lg {
+  font-family: $f-sans;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@mixin t-paragraph-md {
+  @include t-paragraph-lg;
+}
+
+@mixin t-paragraph-sm {
+  @include t-paragraph-md;
+
+  & {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}
+
+@mixin t-paragraph {
+  @include media('<md') {
+    @include t-paragraph-sm;
+  }
+  @include media('>=md', '<lg') {
+    @include t-paragraph-md;
+  }
+  @include media('>=lg') {
+    @include t-paragraph-lg;
+  }
+}
+
+@mixin t-paragraph-header-5 {
+  @include t-header-5-sm;
+
+  & {
+    font-weight: 400;
+    line-height: 1.66;
+  }
+
+  @include media('>=md') {
+    @include t-header-5-md;
+
+    & {
+      font-weight: 400;
+      line-height: 1.73;
+    }
+  }
+
+  @include media('>=lg') {
+    @include t-header-5-lg;
+
+    & {
+      font-weight: 400;
+      line-height: 1.66;
+    }
+  }
+}

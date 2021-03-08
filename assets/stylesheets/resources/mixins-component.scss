@@ -1,0 +1,54 @@
+/**
+ * These components have some amount of component specificity, and/or
+ * describe common measurements shared among components.
+ */
+
+@mixin button-styles {
+  display: inline-block;
+  border: 1px solid $c-black;
+  margin-top: 0.4em;
+
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover,
+  &:focus {
+    background-color: $c-black;
+    color: $c-white;
+  }
+
+  &:focus-within {
+    background-color: $c-black;
+    color: $c-white;
+  }
+
+  > * {
+    @include t-paragraph;
+
+    display: inline-block;
+    height: 100%;
+    // take a lil off the bottom
+    padding: 0.7em 1.15em 0.6em 1.15em;
+  }
+}
+
+@mixin underline-styles {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: background-size 0.3s;
+  transition-timing-function: cubic-bezier(0.89, 0.03, 0.21, 0.92);
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background-size: 0 1px;
+    background-position-x: 100%;
+  }
+
+  &:focus-within {
+    background-size: 0 1px;
+    background-position-x: 100%;
+  }
+}

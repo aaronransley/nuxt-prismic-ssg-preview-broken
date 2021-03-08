@@ -1,0 +1,22 @@
+// z-indexes used by zi() function
+$z-indexes: (
+  'content--lower': 50,
+  'content': 51,
+  'content--upper': 52,
+  'component--lower': 100,
+  'component': 101,
+  'component--upper': 102,
+  'header': 110,
+  'modal--lower': 200,
+  'modal': 201,
+  'modal--upper': 202,
+  'cookie_banner': 300,
+  'debug': 999
+);
+
+@function zi($layer: 'component') {
+  @if not map-has-key($z-indexes, $layer) {
+    @warn "No value found for #{$layer} in $z-indexes map. Property omitted";
+  }
+  @return map-get($z-indexes, $layer);
+}

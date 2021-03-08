@@ -1,0 +1,232 @@
+// Header text one
+// ------------------------
+
+@mixin t-header-1-lg {
+  font-family: $f-sans;
+  font-size: 57px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+@mixin t-header-1-md {
+  @include t-header-1-lg;
+
+  & {
+    font-size: 42px;
+    line-height: 1.2;
+  }
+}
+
+@mixin t-header-1-sm {
+  @include t-header-1-md;
+
+  & {
+    font-size: 36px;
+  }
+}
+
+@mixin t-header-1 {
+  @include media('<md') {
+    @include t-header-1-sm;
+  }
+  @include media('>=md', '<lg') {
+    @include t-header-1-md;
+  }
+  @include media('>=lg') {
+    @include t-header-1-lg;
+  }
+}
+
+// Header text two
+// ------------------------
+
+@mixin t-header-2-lg {
+  font-family: $f-sans;
+  font-size: 47px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+@mixin t-header-2-md {
+  @include t-header-2-lg;
+  line-height: 1.19;
+
+  & {
+    font-size: 36px;
+  }
+}
+
+@mixin t-header-2-sm {
+  @include t-header-2-md;
+
+  & {
+    font-size: 33px;
+  }
+}
+
+@mixin t-header-2 {
+  @include media('<md') {
+    @include t-header-2-sm;
+  }
+  @include media('>=md', '<lg') {
+    @include t-header-2-md;
+  }
+  @include media('>=lg') {
+    @include t-header-2-lg;
+  }
+}
+
+// Header text three
+// ------------------------
+
+@mixin t-header-3-lg {
+  font-family: $f-sans;
+  font-size: 39px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+@mixin t-header-3-md {
+  @include t-header-3-lg;
+  line-height: 1.2;
+
+  & {
+    font-size: 33px;
+  }
+}
+
+@mixin t-header-3-sm {
+  @include t-header-3-md;
+
+  & {
+    font-size: 27px;
+  }
+}
+
+@mixin t-header-3 {
+  @include media('<md') {
+    @include t-header-3-sm;
+  }
+  @include media('>=md', '<lg') {
+    @include t-header-3-md;
+  }
+  @include media('>=lg') {
+    @include t-header-3-lg;
+  }
+}
+
+// Header text four
+// ------------------------
+
+@mixin t-header-4-lg {
+  font-family: $f-sans;
+  font-size: 33px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+@mixin t-header-4-md {
+  @include t-header-4-lg;
+
+  & {
+    font-size: 27px;
+    line-height: 1.2;
+  }
+}
+
+@mixin t-header-4-sm {
+  @include t-header-4-md;
+
+  & {
+    font-size: 23px;
+  }
+}
+
+@mixin t-header-4 {
+  @include media('<md') {
+    @include t-header-4-sm;
+  }
+  @include media('>=md', '<lg') {
+    @include t-header-4-md;
+  }
+  @include media('>=lg') {
+    @include t-header-4-lg;
+  }
+}
+
+// Header text five
+// ------------------------
+
+@mixin t-header-5-lg {
+  font-family: $f-sans;
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+@mixin t-header-5-md {
+  @include t-header-5-lg;
+
+  & {
+    font-size: 23px;
+    line-height: 1.2;
+  }
+}
+
+@mixin t-header-5-sm {
+  @include t-header-5-md;
+
+  & {
+    font-size: 21px;
+  }
+}
+
+@mixin t-header-5 {
+  @include media('<md') {
+    @include t-header-5-sm;
+  }
+  @include media('>=md', '<lg') {
+    @include t-header-5-md;
+  }
+  @include media('>=lg') {
+    @include t-header-5-lg;
+  }
+}
+
+// Header text six
+// ------------------------
+
+@mixin t-header-6-lg {
+  font-family: $f-sans;
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+@mixin t-header-6-md {
+  @include t-header-6-lg;
+
+  & {
+    font-size: 21px;
+  }
+}
+
+@mixin t-header-6-sm {
+  @include t-header-6-md;
+
+  & {
+    font-size: 19px;
+  }
+}
+
+@mixin t-header-6 {
+  @include media('<md') {
+    @include t-header-6-sm;
+  }
+  @include media('>=md', '<lg') {
+    @include t-header-6-md;
+  }
+  @include media('>=lg') {
+    @include t-header-6-lg;
+  }
+}

@@ -1,0 +1,103 @@
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin btn-reset {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: currentColor;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin sticky($position: 0) {
+  position: sticky;
+  top: $position;
+}
+
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+
+  &,
+  li {
+    list-style-type: none;
+  }
+}
+
+@mixin list-basic {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style-type: initial;
+    margin-left: 0.85em;
+    margin-bottom: 0.3em;
+    padding-left: 0.4em;
+  }
+}
+
+@mixin list-numbered {
+  @include list-basic;
+
+  li {
+    list-style-type: decimal;
+  }
+}
+
+@mixin style-immediate-children {
+  #{'/deep/'} > * {
+    @content;
+  }
+}
+
+@mixin staggered-transitions($nth: 1, $items: 2, $initial: 0, $step: 0.1) {
+  @for $i from $nth through $items {
+    &:nth-of-type(#{$i}) {
+      transition-delay: #{$initial}s;
+    }
+    $initial: $initial + $step;
+  }
+}
+
+@mixin screen-reader-only {
+  position: absolute;
+
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+
+  border: 0;
+  opacity: 0.1;
+  overflow: hidden;
+}
+
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
+@mixin object-fit($fit: fill, $position: null) {
+  -o-object-fit: $fit;
+  object-fit: $fit;
+  @if $position {
+    -o-object-position: $position;
+    object-position: $position;
+    font-family: 'object-fit: #{$fit}; object-position: #{$position}';
+  } @else {
+    font-family: 'object-fit: #{$fit}';
+  }
+}

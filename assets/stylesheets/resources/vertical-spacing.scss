@@ -1,0 +1,74 @@
+// V-SPACING - A shorthand mixin for handling standardized vertical spacing.
+// Shorthand mixin for setting spacing property values for size at sm, md, & lg breakpoints.
+// Make sure to adjust the 'media' mixins to your configuration.
+
+// $vertical-space - First size represents breakpoint, second size represents vertical spacing size. Configured to your design needs.
+$vertical-space: (
+  lg-xl: 150px,
+  lg-lg: 85px,
+  lg-md: 70px,
+  lg-sm: 50px,
+  lg-xs: 30px,
+  md-xl: 120px,
+  md-lg: 60px,
+  md-md: 50px,
+  md-sm: 45px,
+  md-xs: 30px,
+  sm-xl: 100px,
+  sm-lg: 60px,
+  sm-md: 50px,
+  sm-sm: 45px,
+  sm-xs: 30px
+);
+
+// V-SPACE
+// Gets corresponding $key from 'vertical-space' map.
+@function v-space($bp, $size) {
+  @if map-has-key($vertical-space, #{$bp}-#{$size}) {
+    @return map-get($vertical-space, #{$bp}-#{$size});
+  } @else {
+    @return $size;
+  }
+}
+
+// V-SPACING
+// v-spacing($size: lg, $type: margin, $pos: '', $sm: $size, $md: $size, $lg, $size)
+// $size | default 'lg' = Grabs corresponding vaules from 'vertical-margin' map via 's-space'
+// $type | default 'margin' = The property the $size values will be applied to.
+// $pos | default '' = Used for setting property. Possible values: top, right, bottom, left
+// $sm | default '' = Overrides sm breakpoint size (>0). Can be size (xs, sm, etc) or any other (10px, auto, etc)
+// $md | default '' = Overrides md breakpoint size (>=md). Can be size (xs, sm, etc) or any other (10px, auto, etc)
+// $lg | default '' = Overrides lg breakpoint size (>=lg). Can be size (xs, sm, etc) or any other (10px, auto, etc)
+@mixin v-spacing($size: lg, $type: margin, $pos: all, $sm: $size, $md: $size, $lg: $size) {
+  @if $pos != all and ($type == margin or $type == padding) {
+    #{$type}-#{$pos}: v-space(sm, $sm);
+
+    @include media('>=md') {
+      #{$type}-#{$pos}: v-space(md, $md);
+    }
+
+    @include media('>=lg') {
+      #{$type}-#{$pos}: v-space(lg, $lg);
+    }
+  } @else if $pos != all and $type == position {
+    #{$pos}: v-space(sm, $sm);
+
+    @include media('>=md') {
+      #{$pos}: v-space(md, $md);
+    }
+
+    @include media('>=lg') {
+      #{$pos}: v-space(lg, $lg);
+    }
+  } @else {
+    #{$type}: v-space(sm, $sm);
+
+    @include media('>=md') {
+      #{$type}: v-space(md, $md);
+    }
+
+    @include media('>=lg') {
+      #{$type}: v-space(lg, $lg);
+    }
+  }
+}

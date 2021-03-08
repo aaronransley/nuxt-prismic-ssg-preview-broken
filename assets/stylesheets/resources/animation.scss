@@ -1,0 +1,13 @@
+@mixin fade-in-basic($delay: 0.15s) {
+  animation-name: fade-in-basic;
+  animation-duration: 1s;
+  animation-delay: $delay;
+  animation-fill-mode: backwards;
+}
+
+@mixin fade-up-basic($delay: 0.15s) {
+  animation-name: fade-up-basic;
+  animation-duration: 1s;
+  animation-delay: $delay;
+  animation-fill-mode: both;
+}

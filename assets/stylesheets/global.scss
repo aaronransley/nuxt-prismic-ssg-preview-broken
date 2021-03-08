@@ -1,0 +1,12 @@
+// Global CSS to be included on every page.
+// Pulled in to site via `css` in `nuxt.config.js`
+
+// from npm packages
+@import '~sanitize.css/sanitize';
+
+// from repo
+@import 'global/fonts';
+@import 'global/tags';
+@import 'global/print';
+@import 'global/animation';
+@import 'global/utility';

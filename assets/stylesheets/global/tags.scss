@@ -1,0 +1,74 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+    font-size: inherit;
+  }
+}
+
+::selection {
+  background-color: $c-selection;
+  color: $c-black;
+}
+
+::-moz-selection {
+  background-color: $c-selection;
+  color: $c-black;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+
+  font-family: $f-sans;
+  background-color: $c-white;
+}
+
+a {
+  color: currentColor;
+
+  &:visited {
+    color: currentColor;
+  }
+}
+
+code,
+pre {
+  padding: 0.2em 0.3em;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: $c-white;
+  background-color: $c-black;
+}
+
+pre {
+  display: inline-block;
+  white-space: pre-wrap;
+  padding: 1em;
+  border-radius: 8px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: normal;
+}
+
+ul.list_reset,
+ol.list_reset {
+  @include list-reset;
+}

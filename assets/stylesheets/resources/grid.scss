@@ -1,0 +1,130 @@
+// Grid colors
+$svg-grid-colors: $c-grid_overlay $c-grid_overlay;
+
+// Susy grid config
+$susy: (
+  'columns': susy-repeat(4),
+  'gutters': 20px,
+  'svg-grid-colors': $svg-grid-colors,
+);
+
+$susy-3: (
+  'columns': susy-repeat(3),
+  'gutters': 20px,
+  'svg-grid-colors': $svg-grid-colors,
+);
+
+$susy-24: (
+  'columns': susy-repeat(24),
+  'gutters': 20px,
+  'svg-grid-colors': $svg-grid-colors,
+);
+
+// For use by calls to @include media(...) or @include media-grid(...)
+// See components\_global\BaseContainer.vue for container max-width definitions
+$breakpoints: (
+  'sm': 320px,
+  'md': 600px,
+  'lg': 900px,
+  'wide': 1100px,
+  'xl': 1300px,
+  'max': 1600px,
+  'max-with-margin': 1680px // 1600px (max) + 80px (left margin + right margin),,,
+);
+
+// Allow for Susy configs to be swapped for a specific context
+// This is used for grid tweaks
+// From: http://oddbird.net/2017/09/25/susy-use
+// e.g. `@include susy-use($susy-3) { ... }`
+@mixin susy-use($config) {
+  //  parse and normalize any shorthand arguments
+  $config: susy-compile($config);
+
+  // record the global settings -
+  // and update the global variable with our new settings
+  $global: $susy;
+  $susy: map-merge($susy, $config) !global;
+
+  // any content inside this mixin
+  // will use the local settings
+  @content;
+
+  // return the global variable to its initial value
+  $susy: $global !global;
+}
+
+// Helper that utilizes include-media and susy-use to create
+// grid-aware media queries with a single mixin call
+// e.g. `@include media-grid('>=md', $susy-3) { ... }`
+@mixin media-grid($args...) {
+  $desired-grid: null;
+  $media-args: null;
+
+  // If last arg isn't a susy config map
+  @if type-of(nth($args, -1)) != 'map' {
+    $desired-grid: $susy;
+    $media-args: $args;
+  } @else {
+    // If last arg is susy config map, pass others media mixin
+    $desired-grid: nth($args, -1);
+    $media-args: remove-nth($args, -1);
+  }
+
+  @include media($media-args...) {
+    @include susy-use($desired-grid) {
+      @content;
+    }
+  }
+}
+
+// SPANULATOR LOGIC - Checks if $input is a 'susy-span' statement.
+@function spanulator-logic($input) {
+  @if index($input, of) or index($input, wide) or index($input, wider) {
+    @return true;
+  } @else if type-of($input) == number and $input != 0 {
+    @if unitless($input) {
+      @return true;
+    } @else {
+      @return false;
+    }
+  } @else {
+    @return false;
+  }
+}
+
+// SPANULATOR
+// Shorthand mixin for setting property values for size at sm, md, & lg breakpoints.
+// Make sure to adjust the 'media-grid' mixins to your configuration.
+// Supports 'susy-span'. Example format: '3 wider of 12', '3 wide', '3'
+
+// spanulator ($sm, $md, $lg, $type)
+// $sm | default '100%' = Size of attribute '<md' breakpoint.
+// $md | default '100%' = Size of attribute between '>=md', '<lg' breakpoint.
+// $lg | default '100%' = Size of attribute '>=lg' breakpoint.
+// $type | default 'width' = Sets the property that the value will be applied to. (width, margin, padding, etc).
+
+@mixin spanulator($sm: 100%, $md: 100%, $lg: 100%, $type: width) {
+  @include media-grid('<md', $susy) {
+    @if spanulator-logic($sm) {
+      #{$type}: susy-span($sm);
+    } @else if type-of($sm) == number or type-of($sm) == string {
+      #{$type}: $sm;
+    }
+  }
+
+  @include media-grid('>=md', '<lg', $susy-3) {
+    @if spanulator-logic($md) {
+      #{$type}: susy-span($md);
+    } @else if type-of($md) == number or type-of($md) == string {
+      #{$type}: $md;
+    }
+  }
+
+  @include media-grid('>=lg', $susy-24) {
+    @if spanulator-logic($lg) {
+      #{$type}: susy-span($lg);
+    } @else if type-of($lg) == number or type-of($lg) == string {
+      #{$type}: $lg;
+    }
+  }
+}

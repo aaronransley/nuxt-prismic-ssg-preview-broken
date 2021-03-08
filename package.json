@@ -1,0 +1,38 @@
+{
+  "name": "nuxt-prismic-ssg-preview-broken",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt --dotenv false",
+    "generate": "nuxt generate --dotenv false",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "nuxt": "^2.15.2"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.15.2",
+    "@nuxt/typescript-build": "^2.0.6",
+    "@nuxtjs/prismic": "^1.2.4",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@prismicio/client": "^4.0.0",
+    "boolean": "^3.0.2",
+    "dotenv-flow": "^3.2.0",
+    "include-media": "^1.4.9",
+    "lodash": "^4.17.21",
+    "node-sass": "^5.0.0",
+    "nuxt-jsonld": "^1.5.0",
+    "prettier": "^2.2.1",
+    "sanitize.css": "^12.0.1",
+    "sass-loader": "^10.1.1",
+    "susy": "^3.0.6",
+    "xmldom": "^0.4.0"
+  },
+  "volta": {
+    "node": "14.16.0",
+    "yarn": "1.22.10"
+  },
+  "vetur": {
+    "tags": ".nuxt/vetur/tags.json"
+  }
+}
