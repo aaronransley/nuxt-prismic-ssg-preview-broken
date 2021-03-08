@@ -24,8 +24,5 @@
 <script>
 export default {
   props: ['error'],
-  head() {
-    return this.$setHead({ addTitle: 'Not Found' })
-  },
 }
 </script>
